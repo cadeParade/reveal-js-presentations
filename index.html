@@ -15,7 +15,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 		<link rel="stylesheet" href="css/reveal.min.css">
-		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+		<link rel="stylesheet" href="css/theme/sky.css" id="theme">
 
 		<!-- For syntax highlighting -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
@@ -42,316 +42,366 @@
 
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
-				<section>
-					<h1>Reveal.js</h1>
-					<h3>HTML Presentations Made Easy</h3>
-					<p>
-						<small>Created by <a href="http://hakim.se">Hakim El Hattab</a> / <a href="http://twitter.com/hakimel">@hakimel</a></small>
-					</p>
-				</section>
 
-				<section>
-					<h2>Heads Up</h2>
-					<p>
-						reveal.js is a framework for easily creating beautiful presentations using HTML. You'll need a browser with
-						support for CSS 3D transforms to see it in its full glory.
-					</p>
+			<section>
+				<h1>Sorting Algorithms</h1>
+			</section>
 
-					<aside class="notes">
-						Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
-					</aside>
-				</section>
+			<section>
+				<div>
+					<img style="height: 650px;" src="images/shocked-dog.jpg">
+				</div>
+			</section>
 
-				<!-- Example of nested vertical slides -->
-				<section>
-					<section>
-						<h2>Vertical Slides</h2>
-						<p>
-							Slides can be nested inside of other slides,
-							try pressing <a href="#" class="navigate-down">down</a>.
-						</p>
-						<a href="#" class="image navigate-down">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-						</a>
-					</section>
-					<section>
-						<h2>Basement Level 1</h2>
-						<p>Press down or up to navigate.</p>
-					</section>
-					<section>
-						<h2>Basement Level 2</h2>
-						<p>Cornify</p>
-						<a class="test" href="http://cornify.com">
-							<img width="280" height="326" src="https://s3.amazonaws.com/hakim-static/reveal-js/cornify.gif" alt="Unicorn">
-						</a>
-					</section>
-					<section>
-						<h2>Basement Level 3</h2>
-						<p>That's it, time to go back up.</p>
-						<a href="#/2" class="image">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Up arrow" style="-webkit-transform: rotate(180deg);">
-						</a>
-					</section>
-				</section>
-
-				<section>
-					<h2>Slides</h2>
-					<p>
-						Not a coder? No problem. There's a fully-featured visual editor for authoring these, try it out at <a href="http://slid.es" target="_blank">http://slid.es</a>.
-					</p>
-				</section>
-
-				<section>
-					<h2>Point of View</h2>
-					<p>
-						Press <strong>ESC</strong> to enter the slide overview.
-					</p>
-					<p>
-						Hold down alt and click on any element to zoom in on it using <a href="http://lab.hakim.se/zoom-js">zoom.js</a>. Alt + click anywhere to zoom back out.
-					</p>
-				</section>
-
-				<section>
-					<h2>Works in Mobile Safari</h2>
-					<p>
-						Try it out! You can swipe through the slides and pinch your way to the overview.
-					</p>
-				</section>
-
-				<section>
-					<h2>Marvelous Unordered List</h2>
+			<section>
+				<h2>What is about to happen?</h2>
+				<ul>
+					<li>Introduction</li>
+					<li>Three types of sort:</li>
 					<ul>
-						<li>No order here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-						<li>Or here</li>
+						<li>Bubble Sort</li>
+						<li>Merge Sort</li>
+						<li>Quick Sort(quickly)</li>
 					</ul>
-				</section>
+					<li>Other considerations</li>
+					<li>Resources and exercises</li>
+				</ul>
+			</section>
 
-				<section>
-					<h2>Fantastic Ordered List</h2>
-					<ol>
-						<li>One is smaller than...</li>
-						<li>Two is smaller than...</li>
-						<li>Three!</li>
-					</ol>
-				</section>
+			<section>
+				<h2>Why are sorting algorithms a thing?</h2>
+				<p>"Uhh, well, just take the big numbers and put them at the end until they're in order?</p>
+				<p class="fragment">No.</p>
+				<p class="fragment">Ok, actually that's kind of insertion sort</p>
+				<p class="fragment">In any case, computers need incredibly specific instructions.</p>
+			</section>
 
-				<section data-markdown>
-					<script type="text/template">
-						## Markdown support
+			<section>
+				<h2>Any ideas for a sort strategy?</h2>
+			</section>
 
-						For those of you who like that sort of thing. Instructions and a bit more info available [here](https://github.com/hakimel/reveal.js#markdown).
+			<section>
+				<h2>A simple sort</h2>
+				<h3>For a random list</h3>
+				<pre><code>[6, 5, 3, 1, 8, 7, 2, 4]</code></pre>
+				<p>How might we go about sorting this programmatically?</p>
+			</section>
 
-						```
-						<section data-markdown>
-						  ## Markdown support
+			<section>
+				<h2>A simple sort</h2>
+				<pre><code style="font-size: 1.5em; line-height: 1.5em">[6, 5, 3, 1, 8, 7, 2, 4]</code></pre>
+				<p>Okay, start at the beginning....that's a 6</p>
+				<p class="fragment">Look at the next number... that's a 5</p>
+				<p class="fragment">Oh! 5 is less than 6, so switch them!</p>
+				<pre class="fragment"><code style="font-size: 1.5em; line-height: 1.5em">[5, 6, 3, 1, 8, 7, 2, 4]</code></pre>
+				<p class="fragment">Now compare the next two, 6 to three, switch them!</p>
+				<p class="fragment">etc...</p>
+			</section>
 
-						  For those of you who like that sort of thing.
-						  Instructions and a bit more info available [here](https://github.com/hakimel/reveal.js#markdown).
-						</section>
-						```
-					</script>
-				</section>
+			<section>
+				<h2>A simple sort</h2>
+					<p><img src="images/bubble-sort.gif"></p>
+					<p><a href="http://en.wikipedia.org/wiki/Bubble_sort" target="_blank">Source</a></p>
+			</section>
 
-				<section id="transitions">
-					<h2>Transition Styles</h2>
-					<p>
-						You can select from different transitions, like: <br>
-						<a href="?transition=cube#/transitions">Cube</a> -
-						<a href="?transition=page#/transitions">Page</a> -
-						<a href="?transition=concave#/transitions">Concave</a> -
-						<a href="?transition=zoom#/transitions">Zoom</a> -
-						<a href="?transition=linear#/transitions">Linear</a> -
-						<a href="?transition=fade#/transitions">Fade</a> -
-						<a href="?transition=none#/transitions">None</a> -
-						<a href="?#/transitions">Default</a>
-					</p>
-				</section>
+			<section>
+				<h2>A Simple Sort</h2>
+				<p>Let's code it!</p>
+				<pre><code style="font-size: 1.2em; line-height:1.1em">
+def bubble_sort(l):
 
-				<section id="themes">
-					<h2>Themes</h2>
-					<p>
-						Reveal.js comes with a few themes built in: <br>
-						<a href="?#/themes">Default</a> -
-						<a href="?theme=sky#/themes">Sky</a> -
-						<a href="?theme=beige#/themes">Beige</a> -
-						<a href="?theme=simple#/themes">Simple</a> -
-						<a href="?theme=serif#/themes">Serif</a> -
-						<a href="?theme=night#/themes">Night</a> <br>
-						<a href="?theme=moon#/themes">Moon</a> -
-						<a href="?theme=solarized#/themes">Solarized</a>
-					</p>
-					<p>
-						<small>
-							* Theme demos are loaded after the presentation which leads to flicker. In production you should load your theme in the <code>&lt;head&gt;</code> using a <code>&lt;link&gt;</code>.
-						</small>
-					</p>
-				</section>
+    for i in range(len(l) - 1):
+      num1, num2 = l[i], l[i+1]
 
-				<section>
-					<h2>Global State</h2>
-					<p>
-						Set <code>data-state="something"</code> on a slide and <code>"something"</code>
-						will be added as a class to the document element when the slide is open. This lets you
-						apply broader style changes, like switching the background.
-					</p>
-				</section>
+      if num1 > num2:
+        l[i], l[i+1] = num2, num1
 
-				<section data-state="customevent">
-					<h2>Custom Events</h2>
-					<p>
-						Additionally custom events can be triggered on a per slide basis by binding to the <code>data-state</code> name.
-					</p>
-					<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-Reveal.addEventListener( 'customevent', function() {
-	console.log( '"customevent" has fired' );
-} );
-					</code></pre>
-				</section>
+    return l
+ </code></pre>
+ 			<p class="fragment">What's wrong with this?</p>
+			</section>
 
-				<section>
-					<section data-background="#007777">
-						<h2>Slide Backgrounds</h2>
-						<p>
-							Set <code>data-background="#007777"</code> on a slide to change the full page background to the given color. All CSS color formats are supported.
-						</p>
-						<a href="#" class="image navigate-down">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-						</a>
-					</section>
-					<section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png">
-						<h2>Image Backgrounds</h2>
-						<pre><code>&lt;section data-background="image.png"&gt;</code></pre>
-					</section>
-					<section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" data-background-repeat="repeat" data-background-size="100px">
-						<h2>Repeated Image Backgrounds</h2>
-						<pre><code style="word-wrap: break-word;">&lt;section data-background="image.png" data-background-repeat="repeat" data-background-size="100px"&gt;</code></pre>
-					</section>
-				</section>
+		<section>
+				<h2>A Simple Sort</h2>
+				<p>Let's code it better!</p>
+				<pre><code style="font-size: 1.2em; line-height:1.1em">
+def bubble_sort(l):
+  is_sorted = False
 
-				<section data-transition="linear" data-background="#4d7e65" data-background-transition="slide">
-					<h2>Background Transitions</h2>
-					<p>
-						Pass reveal.js the <code>backgroundTransition: 'slide'</code> config argument to make backgrounds slide rather than fade.
-					</p>
-				</section>
+  while is_sorted == False:
+    is_sorted=True
 
-				<section data-transition="linear" data-background="#8c4738" data-background-transition="slide">
-					<h2>Background Transition Override</h2>
-					<p>
-						You can override background transitions per slide by using <code>data-background-transition="slide"</code>.
-					</p>
-				</section>
+    for i in range(len(l) - 1):    # go through each except last
+      num1, num2 = l[i], l[i+1]
 
-				<section>
-					<h2>Clever Quotes</h2>
-					<p>
-						These guys come in two forms, inline: <q cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-						&ldquo;The nice thing about standards is that there are so many to choose from&rdquo;</q> and block:
-					</p>
-					<blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-						&ldquo;For years there has been a theory that millions of monkeys typing at random on millions of typewriters would
-						reproduce the entire works of Shakespeare. The Internet has proven this theory to be untrue.&rdquo;
-					</blockquote>
-				</section>
+      if num1 > num2:              # if you have to switch,
+        is_sorted = False          # it's not sorted
+        l[i], l[i+1] = num2, num1  # switch the numbers
+        </code></pre>
+        <pre class="fragment"><code style="font-size: 1.2em;">l = bubble_sort([6, 5, 3, 1, 8, 7, 2, 4]) # => 42 steps!</code></pre>
+			</section>
 
-				<section>
-					<h2>Pretty Code</h2>
-					<pre><code data-trim contenteditable>
-function linkify( selector ) {
-  if( supports3DTransforms ) {
+			<section>
+				<h2>A Simple Sort</h2>
+				<p>Runtime?</p>
+				<p>Two nested loops, so ....</p>
+				<p class="fragment">O(n<sup>2</sup>)</p>
+				<p class="fragment">Bonus: Can you make it run in 21 steps (Twice as fast!)?
+				<br>Runtime will be O(n<sup>2</sup>/2), so unfortunately still O(n<sup>2</sup>)</p>
+			</section>
 
-    var nodes = document.querySelectorAll( selector );
 
-    for( var i = 0, len = nodes.length; i &lt; len; i++ ) {
-      var node = nodes[i];
+			<section>
+				<h2>Bubble Sort</h2>
+				<p>We have just implemented bubble sort!</p>
+				<img height="500" src="images/applause.gif">
+			</section>
 
-      if( !node.className ) {
-        node.className += ' roll';
-      }
-    }
-  }
-}
-					</code></pre>
-					<p>Courtesy of <a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a>.</p>
-				</section>
+			<section>
+				<h2>Others?</h2>
+				<ul>
+					<li><a href="http://en.wikipedia.org/wiki/Insertion_sort">Insertion Sort</a></li>
+					<li><a href="http://en.wikipedia.org/wiki/Selection_sort">Select Sort</a></li>
+				</ul>
+				<p class="fragment">Worst case: O(n<sup>2</sup>)</p>
+				<p class="fragment">Average case: O(n<sup>2</sup>)</p>
+				<div><img class="fragment" src="images/quadratic_time.png" height="300"></div>
+				<p class="fragment roll-in">: (</p>
+			</section>
 
-				<section>
-					<h2>Intergalactic Interconnections</h2>
-					<p>
-						You can link between slides internally,
-						<a href="#/2/3">like this</a>.
-					</p>
-				</section>
+			<section>
+				<h2>We can do better!</h2>
+				<img src="images/big-guns.jpg">
+				<p class="fragment">ENTER MERGE SORT</p>
+			</section>
 
-				<section>
-					<section id="fragments">
-						<h2>Fragmented Views</h2>
-						<p>Hit the next arrow...</p>
-						<p class="fragment">... to step through ...</p>
-						<ol>
-							<li class="fragment"><code>any type</code></li>
-							<li class="fragment"><em>of view</em></li>
-							<li class="fragment"><strong>fragments</strong></li>
-						</ol>
+			<section>
+				<h2>Merge Sort</h2>
+				<p>Merge sort is awesome because it runs in O(n log(n)) time</p>
 
-						<aside class="notes">
-							This slide has fragments which are also stepped through in the notes window.
-						</aside>
-					</section>
-					<section>
-						<h2>Fragment Styles</h2>
-						<p>There's a few styles of fragments, like:</p>
-						<p class="fragment grow">grow</p>
-						<p class="fragment shrink">shrink</p>
-						<p class="fragment roll-in">roll-in</p>
-						<p class="fragment fade-out">fade-out</p>
-						<p class="fragment highlight-red">highlight-red</p>
-						<p class="fragment highlight-green">highlight-green</p>
-						<p class="fragment highlight-blue">highlight-blue</p>
-						<p class="fragment current-visible">current-visible</p>
-						<p class="fragment highlight-current-blue">highlight-current-blue</p>
-					</section>
-				</section>
+				<div>
+					<!-- <table>
+						<tr>
+							<td><img src="images/quadratic_time.png"></td>
+							<td><img src="images/logarithmic_time.png"></td>
+						</tr>
+					</table> -->
+						<img src="images/sort/all_big_o.png" alt="">
+				</div>
 
-				<section>
-					<h2>Spectacular image!</h2>
-					<a class="image" href="http://lab.hakim.se/meny/" target="_blank">
-						<img width="320" height="299" src="http://s3.amazonaws.com/hakim-static/portfolio/images/meny.png" alt="Meny">
-					</a>
-				</section>
 
-				<section>
-					<h2>Export to PDF</h2>
-					<p>Presentations can be <a href="https://github.com/hakimel/reveal.js#pdf-export">exported to PDF</a>, below is an example that's been uploaded to SlideShare.</p>
-					<iframe id="slideshare" src="http://www.slideshare.net/slideshow/embed_code/13872948" width="455" height="356" style="margin:0;overflow:hidden;border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px" allowfullscreen> </iframe>
-					<script>
-						document.getElementById('slideshare').attributeName = 'allowfullscreen';
-					</script>
-				</section>
+			</section>
 
-				<section>
-					<h2>Take a Moment</h2>
-					<p>
-						Press b or period on your keyboard to enter the 'paused' mode. This mode is helpful when you want to take distracting slides off the screen
-						during a presentation.
-					</p>
-				</section>
+<!-- 			<section>
+				<h2>Merge Sort</h2>
+				<h3>Strategy: Divide and Conquer</h3>
+				<p>This can run in O(n log(n)) time because <strong>each time we go through an iteration, the workload is cut in half.</strong></p>
+			</section> -->
 
-				<section>
-					<h2>Stellar Links</h2>
+			<section>
+				<h2>Merge Sort</h2>
+				<h3>BUT FIRST: MERGE</h3>
+				<p>Let's say we have <strong>two already sorted arrays</strong> and we want to <strong>make one sorted array</strong>.</p>
+				<pre><code style="font-size:1.5em; line-height: 1.5em">lst1 = [1, 2, 4, 7]
+lst2 = [3, 5, 6, 8]
+</code></pre>
+				<p>How can we merge them?</p>
+				<pre><code style="font-size:1.5em; line-height: 1.5em">#output => [1, 2, 3, 4, 5, 6, 7, 8]</code></pre>
+			</section>
+
+
+			<section>
+				<h2>Merge Sort</h2>
+				<h3>Merge: Strategy</h3>
+				<ol>
+					<li>Start with two sorted lists</li>
+					<li>Initialize new, empty list for results</li>
+					<li>Compare first element of each sorted list</li>
+					<li>Remove whichever element is lower and add it to the results list.</li>
+					<li>Continue comparing the first elements of each list until one of them has no more items.</li>
+					<li>Append the remaining items from the other list to results list</li>
+				</ol>
+				<p class="fragment">Any volunteers? :)</p>
+			</section>
+
+
+			<section>
+				<h2>Merge Sort</h2>
+				<h3>MERGE</h3>
+				<pre><code>def make_one_sorted_list(lst1, lst2):
+    result_list = []
+    while len(lst1) > 0 and len(lst2) > 0:  #if items left in both lists
+        #compare first items of each list
+        if lst1[0] < lst2[0]:
+            result_list.append(lst1.pop(0))  #append and rm first item of lst1
+        else:
+            result_list.append(lst2.pop(0))  #append and rm first item of lst2
+
+    result_list.extend(lst1)
+    result_list.extend(lst2)
+
+    return result_list
+
+#input lists must be already sorted themselves
+print make_one_sorted_list([1, 2, 4, 7], [3, 5, 6, 8])
+#output => [1, 2, 3, 4, 5, 6, 7, 8]
+</code></pre>
+			</section>
+
+			<section>
+				<h2>Merge Sort</h2>
+				<h3>BUT FIRST: MERGE</h3>
+				<p>This merge solution is generalizeable for any two pre-sorted lists!</p>
+				<p class="fragment" data-fragment-index='1'>AWESOME!!</p>
+				<p class="fragment" data-fragment-index='2' >But how can we guarantee a pre-sorted list??</p>
+			</section>
+
+			<section>
+				<h2>Merge Sort</h2>
+				<h3>Base Case</h3>
+				<p>What kind of list can we KNOW is already pre-sorted?</p>
+				<p class="fragment"><strong>A list with one item is always sorted.</strong></p>
+			</section>
+
+			<section>
+				<h2>Merge Sort</h2>
+				<p>How to get down to where every list is one item long?</p>
+			</section>
+
+			<section>
+				<h2>RECURSION</h2>
+<!-- 				<div>
+					<div style="display:inline-block;"><h3>Recursion</h3></div>
+					<div style="display:inline-block;"><h3>Recursion</h3></div>
+				</div> -->
+				<h3>RECURSION</h3>
+				<h4 style="font-size: 0.8em">recursion</h4>
+				<h5 style="font-size: 0.6em">recursion</h5>
+				<h6 style="font-size: 0.4em">recursion</h6>
+				<h6 style="font-size: 0.2em">recursion</h6>
+				<p class="fragment">Any volunteers?</p>
+			</section>
+
+			<section>
+				<h2>Merge Sort</h2>
+				<h3>Make everything a list of one</h3>
+				<pre><code>def make_everything_a_list_of_one(lst):
+    if len(lst) < 2:      #if length of lst is 1, return lst
+        print lst,
+        return lst
+    mid = int(len(lst)/2)     #index at half the list
+    make_everything_a_list_of_one(lst[:mid])      #divide list in half
+    make_everything_a_list_of_one(lst[mid:])      #assign other half
+
+
+lst2 = [3, 5, 6, 8]
+make_everything_a_list_of_one(lst2)      #outputs => [3] [5] [6] [8]
+</code></pre>
+			</section>
+
+			<section>
+				<h2>Merge Sort</h2>
+				<div><img src="images/sort/merge_sort.png" alt=""></div>
+			</section>
+
+			<section>
+				<h2>Merge Sort</h2>
+				<h3>Your Mission:</h3>
+				<p>Combine these to make merge sort</p>
+				<p class="fragment">Bonus: Don't decrease length of merging lists (don't use pop)</p>
+			</section>
+
+			<section>
+				<h2>Merge Sort</h2>
+				<h3>Stats</h3>
+				<p>Runtime?</p>
+				<p class="fragment">O(n log(n))</p>
+				<p class="fragment">Runspace?</p>
+				<p class="fragment">O(n)</p>
+				<p class="fragment">This means that there's n (the length of the list) extra space needed to complete the algorithm. This takes the form of the results list.</p>
+			</section>
+
+			<section>
+				<h2>Others with O(n log(n))?</h2>
+				<ul>
+					<li>Quick Sort</li>
+				</ul>
+				<p>PLUS, operates in place</p>
+			</section>
+
+			<section>
+				<h2>Quick Sort (quickly)</h2>
+				<p>Operates on the idea of a partition</p>
+				<p>That is, there is a 'pivot' and we can move all the numbers lower than the pivot number to the beginning of the list and move all the numbers bigger than the pivot to the right of the pivot number.</p>
+			</section>
+
+			<section>
+				<h2>Pivot</h2>
+				<img src="images/sort/quick_sort_flattened.png" alt="">
+			</section>
+
+			<section>
+				<h2>Further resources:</h2>
+				<ul>
+					<li>Quicksort intro: https://www.youtube.com/watch?v=aQiWF4E8flQ (6 min) </li>
+					<li>Tim Roughgarden Quicksort: https://class.coursera.org/algo-006/lecture (Quicksort-Algorithm, first two lectures)</li>
+					<li>"An Intuitive Explanation of Quicksort" http://www.quora.com/What-is-an-intuitive-explanation-of-QuickSort</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Why would you choose one over the other?</h2>
+				<ul>
+					<li>Runtime</li>
+					<li>Space requirements (how much more space does it need)</li>
+					<li><a href="http://www.sorting-algorithms.com/">Likely structure of your data:</a>
+						<ul>
+							<li>Random?</li>
+							<li>Almost reversed?</li>
+							<li>Almost sorted?</li>
+							<li>Likely Duplicates?</li>
+						</ul>
+					</li>
+				</ul>
+			</section>
+
+
+			<section>
+				<img src="images/wolf-applause.gif" height="500">
+			</section>
+
+			<section>
+				<h2>Exercises</h2>
+				<ul>
+					<li>Write bubble sort</li>
 					<ul>
-						<li><a href="http://slid.es">Try the online editor</a></li>
-						<li><a href="https://github.com/hakimel/reveal.js">Source code on GitHub</a></li>
-						<li><a href="http://twitter.com/hakimel">Follow me on Twitter</a></li>
+						<li>BONUS: Write bubble sort in O(n<sup>2</sup>/2) time</li>
 					</ul>
-				</section>
+					<li>Write merge sort</li>
+					<ul>
+						<li>BONUS: Don't change length of sublists (don't use pop)</li>
+					</ul>
+					<li>Write quick sort</li>
+				</ul>
+				:)
+			</section>
 
-				<section>
-					<h1>THE END</h1>
-					<h3>BY Hakim El Hattab / hakim.se</h3>
-				</section>
+			<section>
+				<h2>Resources</h2>
+				<ul>
+					<li><a href="http://www.sorting-algorithms.com/">Animated Sort Algorithms (compare with gifs!)</a></li>
+					<li>Hungarian Dance sorting:
+						<ul>
+							<li><a href="https://www.youtube.com/watch?v=lyZQPjUT5B4">Bubble Sort</a></li>
+							<li><a href="https://www.youtube.com/watch?v=ywWBy6J5gz8">Quick Sort</a></li>
+						</ul>
+					</li>
+				</ul>
+			</section>
+
+
+
+
 
 			</div>
 

@@ -83,7 +83,7 @@
 			<section>
 				<h2>A simple sort</h2>
 				<h3>For a random list</h3>
-				<pre><code>[6, 5, 3, 1, 8, 7, 2, 4]</code></pre>
+				<pre><code style="font-size: 1.5em; line-height: 1.5em">[6, 5, 3, 1, 8, 7, 2, 4]</code></pre>
 				<p>How might we go about sorting this programmatically?</p>
 			</section>
 
@@ -201,7 +201,7 @@ def bubble_sort(l):
 			<section>
 				<h2>Merge Sort</h2>
 				<h3>BUT FIRST: MERGE</h3>
-				<p>Let's say we have <strong>two already sorted arrays</strong> and we want to <strong>make one sorted array</strong>.</p>
+				<p>Let's say we have <br><strong>two already sorted arrays</strong><br> and we want to make <br><strong> one sorted array</strong>.</p>
 				<pre><code style="font-size:1.5em; line-height: 1.5em">lst1 = [1, 2, 4, 7]
 lst2 = [3, 5, 6, 8]
 </code></pre>
@@ -214,9 +214,9 @@ lst2 = [3, 5, 6, 8]
 				<h2>Merge Sort</h2>
 				<h3>Merge: Strategy</h3>
 				<ol>
-					<li>Start with two sorted lists</li>
+					<li>Start with two <strong>sorted</strong> lists</li>
 					<li>Initialize new, empty list for results</li>
-					<li>Compare first element of each sorted list</li>
+					<li>Compare <strong>first element</strong> of each sorted list</li>
 					<li>Remove whichever element is lower and add it to the results list.</li>
 					<li>Continue comparing the first elements of each list until one of them has no more items.</li>
 					<li>Append the remaining items from the other list to results list</li>
@@ -251,7 +251,8 @@ print make_one_sorted_list([1, 2, 4, 7], [3, 5, 6, 8])
 			<section>
 				<h2>Merge Sort</h2>
 				<h3>BUT FIRST: MERGE</h3>
-				<p>This merge solution is generalizeable for any two pre-sorted lists!</p>
+				<p>This merge solution is generalizeable for any two
+				<br> <strong>pre-sorted</strong> <br> lists!</p>
 				<p class="fragment" data-fragment-index='1'>AWESOME!!</p>
 				<p class="fragment" data-fragment-index='2' >But how can we guarantee a pre-sorted list??</p>
 			</section>
@@ -336,9 +337,26 @@ make_everything_a_list_of_one(lst2)      #outputs => [3] [5] [6] [8]
 			</section>
 
 			<section>
+				<h2>Quick Sort (quickly)</h2>
+				<img src="images/sort/pivot.png" alt="" style="border:0;box-shadow:none">
+				<p>Now, our pivot is in it's "rightful" place.</p>
+			</section>
+
+			<section>
+				<h2>Quick Sort (quickly)</h2>
+				<p>Instead of continually swapping pivot, use pointers to look through entire list, and swap pivot once!</p>
+				<img src="images/sort/quicksort-1.png" alt="" style="border:0;box-shadow:none;">
+			</section>
+
+			<section>
+				<h2>Quick Sort (quickly)</h2>
+				<img src="images/sort/quicksort-2.png" alt="" style="border:0;box-shadow:none;">
+			</section>
+<!-- 
+			<section>
 				<h2>Pivot</h2>
 				<img src="images/sort/quick_sort_flattened.png" alt="">
-			</section>
+			</section> -->
 
 			<section>
 				<h2>Further resources:</h2>
@@ -367,7 +385,7 @@ make_everything_a_list_of_one(lst2)      #outputs => [3] [5] [6] [8]
 
 
 			<section>
-				<img src="images/wolf-applause.gif" height="500">
+				<img src="images/harry-potter-applause.gif" height="500">
 			</section>
 
 			<section>

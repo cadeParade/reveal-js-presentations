@@ -18,7 +18,7 @@
 		<link rel="stylesheet" href="css/theme/sky.css" id="theme">
 
 		<!-- For syntax highlighting -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+		<link rel="stylesheet" href="lib/css/tomorrow.css">
 
 		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
 		<script>
@@ -70,14 +70,66 @@
 
 			<section>
 				<h2>Why are sorting algorithms a thing?</h2>
+				<p>Because sometimes you need to sort stuff.</p>
 				<p>"Uhh, well, just take the big numbers and put them at the end until they're in order?</p>
-				<p class="fragment">No.</p>
-				<p class="fragment">Ok, actually that's kind of insertion sort</p>
-				<p class="fragment">In any case, computers need incredibly specific instructions.</p>
+				<p class="fragment">What if your list is a billion numbers long?</p>
+				<p class="fragment">How long would that take?</p>
+				<p class="fragment">Could you make it faster?</p>
+				<p class="fragment">How would you write instructions for a computer?</p>
 			</section>
 
 			<section>
+				<h2>Many sorting strategies:</h2>
+				<ul>
+					<li>Insertion</li>
+					<li>Bubble</li>
+					<li>Selection</li>
+					<li>Shell</li>
+					<li>Merge</li>
+					<li>Heap</li>
+					<li>Quick</li>
+				</ul>
+			<aside class="notes">
+				Only going to cover three today, but you can be aware that there's lots of different algorithms with different advantages and disadvantages.
+    	</aside>
+			</section>
+
+			<section>
+				<h2>Why would you choose one over the other?</h2>
+				<ul>
+					<li>Runtime</li>
+					<li>Space requirements (how much more space does it need)</li>
+					<li><a href="http://www.sorting-algorithms.com/">Likely structure of your data:</a>
+						<ul>
+							<li>Random?</li>
+							<li>Almost reversed?</li>
+							<li>Almost sorted?</li>
+							<li>Likely Duplicates?</li>
+						</ul>
+					</li>
+				</ul>
+			<aside class="notes">
+				Space requirements -- i.e. does it need to make a copy of the list to run? Or create a receptacle for the result list to land?
+
+				some properties your list's data might have, like almost sorted or lots of duplicates. These conditions can affect runtime.
+
+        Insertion sort wins super hard at sorting almost sorted lists.
+        For example, quick sort is very fast at sorting almost random lists, but insertion sort is much much faster at sorting lists with a lot of duplicates.
+
+        To explore advantages and disadvantages of the algorithms, check out this page
+        Visualize it for you
+        Click through and read description
+    	</aside>
+			</section>
+
+
+			<section>
 				<h2>Any ideas for a sort strategy?</h2>
+				<aside class="notes">
+					Given a list of random numbers, how would you begin sorting it?
+
+					if prompting needed: which element to start with? FIFTH ELEMENT?? HAH
+				</aside>
 			</section>
 
 			<section>
@@ -102,6 +154,8 @@
 				<h2>A simple sort</h2>
 					<p><img src="images/bubble-sort.gif"></p>
 					<p><a href="http://en.wikipedia.org/wiki/Bubble_sort" target="_blank">Source</a></p>
+					<p class="fragment">Why is this called bubble sort?</p>
+					<p class="fragment">Because after first pass through the list, the highest number floats to the top.</p>
 			</section>
 
 			<section>
@@ -124,12 +178,12 @@ def bubble_sort(l):
 		<section>
 				<h2>A Simple Sort</h2>
 				<p>Let's code it better!</p>
-				<pre><code style="font-size: 1.2em; line-height:1.1em">
+				<pre><code style="font-size: 1.2em; line-height:1.1em;width:1000px">
 def bubble_sort(l):
   is_sorted = False
 
   while is_sorted == False:
-    is_sorted=True
+    is_sorted = True
 
     for i in range(len(l) - 1):    # go through each except last
       num1, num2 = l[i], l[i+1]
@@ -138,7 +192,7 @@ def bubble_sort(l):
         is_sorted = False          # it's not sorted
         l[i], l[i+1] = num2, num1  # switch the numbers
         </code></pre>
-        <pre class="fragment"><code style="font-size: 1.2em;">l = bubble_sort([6, 5, 3, 1, 8, 7, 2, 4]) # => 42 steps!</code></pre>
+        <pre class="fragment"><code style="font-size: 1.2em;width:1000px">l = bubble_sort([6, 5, 3, 1, 8, 7, 2, 4]) # => 42 steps!</code></pre>
 			</section>
 
 			<section>
@@ -146,7 +200,7 @@ def bubble_sort(l):
 				<p>Runtime?</p>
 				<p>Two nested loops, so ....</p>
 				<p class="fragment">O(n<sup>2</sup>)</p>
-				<p class="fragment">Bonus: Can you make it run in 21 steps (Twice as fast!)?
+				<p class="fragment">Optimize: How could it run in 21 steps (Twice as fast!)?
 				<br>Runtime will be O(n<sup>2</sup>/2), so unfortunately still O(n<sup>2</sup>)</p>
 			</section>
 
@@ -158,15 +212,15 @@ def bubble_sort(l):
 			</section>
 
 			<section>
-				<h2>Others?</h2>
-				<ul>
-					<li><a href="http://en.wikipedia.org/wiki/Insertion_sort">Insertion Sort</a></li>
-					<li><a href="http://en.wikipedia.org/wiki/Selection_sort">Select Sort</a></li>
-				</ul>
-				<p class="fragment">Worst case: O(n<sup>2</sup>)</p>
-				<p class="fragment">Average case: O(n<sup>2</sup>)</p>
-				<div><img class="fragment" src="images/quadratic_time.png" height="300"></div>
+				<h2>Stats?</h2>
+				<p>Worst case: O(n<sup>2</sup>)</p>
+				<p>Average case: O(n<sup>2</sup>)</p>
+				<div><img src="images/quadratic_time.png" height="300"></div>
 				<p class="fragment roll-in">: (</p>
+
+				<aside class="notes">
+					Insertion sort and select sort share these properties.
+				</aside>
 			</section>
 
 			<section>
@@ -178,18 +232,9 @@ def bubble_sort(l):
 			<section>
 				<h2>Merge Sort</h2>
 				<p>Merge sort is awesome because it runs in O(n log(n)) time</p>
-
 				<div>
-					<!-- <table>
-						<tr>
-							<td><img src="images/quadratic_time.png"></td>
-							<td><img src="images/logarithmic_time.png"></td>
-						</tr>
-					</table> -->
 						<img src="images/sort/all_big_o.png" alt="">
 				</div>
-
-
 			</section>
 
 <!-- 			<section>
@@ -221,14 +266,13 @@ lst2 = [3, 5, 6, 8]
 					<li>Continue comparing the first elements of each list until one of them has no more items.</li>
 					<li>Append the remaining items from the other list to results list</li>
 				</ol>
-				<p class="fragment">Any volunteers? :)</p>
 			</section>
 
 
 			<section>
 				<h2>Merge Sort</h2>
 				<h3>MERGE</h3>
-				<pre><code>def make_one_sorted_list(lst1, lst2):
+				<pre><code style="max-height:500px;width:1000px;">def make_one_sorted_list(lst1, lst2):
     result_list = []
     while len(lst1) > 0 and len(lst2) > 0:  #if items left in both lists
         #compare first items of each list
@@ -246,6 +290,12 @@ lst2 = [3, 5, 6, 8]
 print make_one_sorted_list([1, 2, 4, 7], [3, 5, 6, 8])
 #output => [1, 2, 3, 4, 5, 6, 7, 8]
 </code></pre>
+			</section>
+
+			<section>
+				<h2>Merge Sort</h2>
+				<h3>BUT FIRST: MERGE</h3>
+				<img src="images/sort/merging.png" alt="" style="border:0;box-shadow:none">
 			</section>
 
 			<section>
@@ -280,7 +330,6 @@ print make_one_sorted_list([1, 2, 4, 7], [3, 5, 6, 8])
 				<h5 style="font-size: 0.6em">recursion</h5>
 				<h6 style="font-size: 0.4em">recursion</h6>
 				<h6 style="font-size: 0.2em">recursion</h6>
-				<p class="fragment">Any volunteers?</p>
 			</section>
 
 			<section>
@@ -309,7 +358,7 @@ make_everything_a_list_of_one(lst2)      #outputs => [3] [5] [6] [8]
 				<h2>Merge Sort</h2>
 				<h3>Your Mission:</h3>
 				<p>Combine these to make merge sort</p>
-				<p class="fragment">Bonus: Don't decrease length of merging lists (don't use pop)</p>
+				<p class="fragment">Or look at the code at the end...</p>
 			</section>
 
 			<section>
@@ -323,7 +372,7 @@ make_everything_a_list_of_one(lst2)      #outputs => [3] [5] [6] [8]
 			</section>
 
 			<section>
-				<h2>Others with O(n log(n))?</h2>
+				<h2>Others with <br>O(n log(n))?</h2>
 				<ul>
 					<li>Quick Sort</li>
 				</ul>
@@ -368,28 +417,11 @@ make_everything_a_list_of_one(lst2)      #outputs => [3] [5] [6] [8]
 			</section>
 
 			<section>
-				<h2>Why would you choose one over the other?</h2>
-				<ul>
-					<li>Runtime</li>
-					<li>Space requirements (how much more space does it need)</li>
-					<li><a href="http://www.sorting-algorithms.com/">Likely structure of your data:</a>
-						<ul>
-							<li>Random?</li>
-							<li>Almost reversed?</li>
-							<li>Almost sorted?</li>
-							<li>Likely Duplicates?</li>
-						</ul>
-					</li>
-				</ul>
-			</section>
-
-
-			<section>
 				<img src="images/harry-potter-applause.gif" height="500">
 			</section>
 
 			<section>
-				<h2>Exercises</h2>
+				<h2>Want to practice?</h2>
 				<ul>
 					<li>Write bubble sort</li>
 					<ul>
@@ -411,10 +443,39 @@ make_everything_a_list_of_one(lst2)      #outputs => [3] [5] [6] [8]
 					<li>Hungarian Dance sorting:
 						<ul>
 							<li><a href="https://www.youtube.com/watch?v=lyZQPjUT5B4">Bubble Sort</a></li>
-							<li><a href="https://www.youtube.com/watch?v=ywWBy6J5gz8">Quick Sort</a></li>
+							<li><a href="https://www.youtube.com/watch?v=XaqR3G_NVoo">Merge Sort</a></li>
 						</ul>
 					</li>
 				</ul>
+			</section>
+
+			<section>
+				<h3>Merge Sort</h3>
+				<pre><code style="max-height:800px;">def merge_sort(lst):
+    # here we are breaking everything down into a list of one
+    if len(lst) < 2:      #if length of lst is 1, return lst
+        return lst
+    mid = int(len(lst)/2)     #index at half the list
+    lst1 = merge_sort(lst[:mid])      #divide list in half
+    lst2 = merge_sort(lst[mid:])      #assign other half
+
+    # here we are comparing the first items of each pair of lists and interleaving a result list
+    result_list = []
+    while len(lst1) > 0 and len(lst2) > 0:  #if items left in both lists
+        #compare first items of each list
+        if lst1[0] < lst2[0]:
+            result_list.append(lst1.pop(0))  #append and rm first item of lst1
+        else:
+            result_list.append(lst2.pop(0))  #append and rm first item of lst2
+
+    result_list.extend(lst1)
+    result_list.extend(lst2)
+
+    return result_list
+
+
+print merge_sort([54, 2, 3, 9, 23, 8, 0, 4, 6])
+</code></pre>
 			</section>
 
 

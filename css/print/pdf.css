@@ -24,6 +24,8 @@ body {
 	padding: 0;
 	float: none !important;
 	overflow: visible;
+	background-color: white;
+	background: white;
 }
 
 html {

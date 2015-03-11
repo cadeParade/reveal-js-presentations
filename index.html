@@ -20,15 +20,47 @@
 		<!-- For syntax highlighting -->
 		<link rel="stylesheet" href="lib/css/tomorrow.css">
 
+		<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+
+
 		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+		
 		<script>
-			if( window.location.search.match( /print-pdf/gi ) ) {
-				var link = document.createElement( 'link' );
-				link.rel = 'stylesheet';
-				link.type = 'text/css';
-				link.href = 'css/print/pdf.css';
-				document.getElementsByTagName( 'head' )[0].appendChild( link );
-			}
+		$('document').ready(function() {
+		  if( window.location.search.match( /print-pdf/gi ) ) {
+		  	console.log('in if')
+		    var link = document.createElement( 'link' );
+		    link.rel = 'stylesheet';
+		    link.type = 'text/css';
+		    link.href = 'css/print/pdf.css';
+		    document.getElementsByTagName( 'head' )[0].appendChild( link );
+		    var links = document.getElementsByTagName('a')
+		    console.log(links)
+		    for(i=0; i<links.length; i++){
+		    	console.log($(links[i]).attr('href'))
+		    	var urlStr = "<span> ( "+$(links[i]).attr("href")+" )</span>"
+		    	$(urlStr).appendTo(links[i])
+		    }
+
+		  }
+		})
+</script>
+
+
+		<script>
+		// $('document').ready(function() {
+		// 	console.log('in func')
+		// 	console.log(window.location.origin)
+		//   if( window.location.origin.search( /print-pdf/gi ) !== -1) {
+		//   // if( window.location.search.match( /print-pdf/gi ) ) {
+		//   	console.log('in if')
+		//     var link = document.createElement( 'link' );
+		//     link.rel = 'stylesheet';
+		//     link.type = 'text/css';
+		//     link.href = 'css/print/pdf.css';
+		//     document.getElementsByTagName( 'head' )[0].appendChild( link );
+		//   }
+		//   })
 		</script>
 
 		<!--[if lt IE 9]>
@@ -56,14 +88,13 @@
 			<section>
 				<h2>What is about to happen?</h2>
 				<ul>
-					<li>Introduction</li>
+					<li>Introduction and considerations</li>
 					<li>Three types of sort:</li>
 					<ul>
 						<li>Bubble Sort</li>
 						<li>Merge Sort</li>
-						<li>Quick Sort(quickly)</li>
+						<li>Quick Sort (quickly)</li>
 					</ul>
-					<li>Other considerations</li>
 					<li>Resources and exercises</li>
 				</ul>
 			</section>
@@ -88,9 +119,12 @@
 					<li>Merge</li>
 					<li>Heap</li>
 					<li>Quick</li>
+					<li>Tim</li>
 				</ul>
 			<aside class="notes">
 				Only going to cover three today, but you can be aware that there's lots of different algorithms with different advantages and disadvantages.
+
+				Point out tim sort
     	</aside>
 			</section>
 
@@ -235,6 +269,11 @@ def bubble_sort(l):
 				<div>
 						<img src="images/sort/all_big_o.png" alt="">
 				</div>
+				<aside class="notes">
+					n log n is also the fastest possible runtime by which to sort a list.
+					N because you have to touch every item in the list once, and log(n) because the best possible strategy is divide and conquer method. (which is what both merge and quick sort use.)
+					This has been proved with a mathematical proof -- that no sorting algorithm will be faster than o n log n
+				</aside>
 			</section>
 
 <!-- 			<section>
